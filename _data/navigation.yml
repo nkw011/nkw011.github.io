@@ -1,13 +1,21 @@
+# main links
+# - title: "Sitemap"
+#   url: /sitemap/
 main:
-  - title: Home
-    url: #
-# 알고리즘 sidebar menu
-algo:
-  - title: Algorithm
+    - title: "Category"
+      url: https://nkw011.github.io/categories/
+    - title: "About"
+      url: /about/
+
+
+# 사이드바 전체
+sidebarTotal:
+  - title: PS
     children:
-      - title: "개념 정리"
-        url: /category/algoStudy/
-      - title: "Baekjoon Online Judge"
-        url: /category/baekjoon/
-      - title: "programmers"
-        url: /category/programmers/
+      - title: 개념 복습
+        url: /categories/algorithmconcept/
+      - title: Baekjoon Online Judge 
+        url: /categories/baekjoon/
+      - title: Programmers
+        url: /categories/programmers/
+
