@@ -1,9 +1,9 @@
 ---
 title: "알고리즘 개념 복습"
-permalink: /categories/algorithmconcept/
+permalink: /categories/algorithm/
 layout: category
 author_profile: true
-taxonomy: AlgorithmConcept
+taxonomy: algorithm
 sidebar:
     nav: sidebarTotal
 ---

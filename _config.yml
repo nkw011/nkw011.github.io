@@ -19,7 +19,7 @@ locale: "en-US"
 title: "Deep Dive Devlog"
 title_separator: "-"
 subtitle: "Deep Dive into Development"
-name: "학생"
+name: "nkw"
 description: "경험치가 늘 부족한 학생"
 url: "https://nkw011.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
@@ -103,7 +103,7 @@ author:
     name: "nkw"
     avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
     bio: "경험치가 늘 부족한 학생"
-    location: "Republic Of Korea"
+    location: #
     email:
     links:
         - label: "Email"

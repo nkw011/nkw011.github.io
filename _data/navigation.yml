@@ -12,10 +12,10 @@ main:
 sidebarTotal:
   - title: PS
     children:
-      - title: 개념 복습
-        url: /categories/algorithmconcept/
-      - title: Baekjoon Online Judge 
+      - title: algorithm
+        url: /categories/algorithm/
+      - title: baekjoon
         url: /categories/baekjoon/
-      - title: Programmers
+      - title: programmers
         url: /categories/programmers/
 
