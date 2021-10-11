@@ -7,15 +7,17 @@ main:
     - title: "About"
       url: /about/
 
-
 # 사이드바 전체
 sidebarTotal:
-  - title: PS
-    children:
-      - title: algorithm
-        url: /categories/algorithm/
-      - title: baekjoon
-        url: /categories/baekjoon/
-      - title: programmers
-        url: /categories/programmers/
-
+    - title: PS
+      children:
+          - title: algorithm
+            url: /categories/algorithm/
+          - title: baekjoon
+            url: /categories/baekjoon/
+          - title: programmers
+            url: /categories/programmers/
+    - title: Python
+      children:
+          - title: python
+            url: /categories/python/
