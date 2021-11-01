@@ -1,0 +1,278 @@
+---
+title: "[Numpy] 01. ndarray 만들기"
+excerpt: "Python Numpy Library - ndarray 만들기"
+toc: true
+toc_sticky: true
+categories:
+    - numpy
+tags:
+    - python
+    - numpy
+sidebar:
+    nav: sidebarTotal
+---
+
+```python
+import numpy as np
+```
+
+## 1.1 ndarray 만들기
+
+ndarray는 기본적으로 np.array()를 이용해 만든다.
+
+parameter에 숫자를 넣으면 0차원 ndarray를 반환하게 되고 n차원 python list를 넣어주면 해당하는 n차원 ndarray를 반환한다.
+
+```python
+a = np.array(3)
+b = np.array([1,2,3])
+c = np.array([[1,2],[3,4]])
+
+print("a:",a)
+print("b:",b)
+print("c:\n",c)
+```
+
+    a: 3
+    b: [1 2 3]
+    c:
+     [[1 2]
+     [3 4]]
+
+```python
+a = 3
+b = [1,2,3]
+c = [[1,2],[3,4]]
+
+a_np = np.array(a)
+b_np = np.array(b)
+c_np = np.array(c)
+
+print("a_np:",a_np)
+print("b_np:",b_np)
+print("c_np:\n",c_np)
+```
+
+    a_np: 3
+    b_np: [1 2 3]
+    c_np:
+     [[1 2]
+     [3 4]]
+
+각각의 ndarray는 shape을 지닌다.
+
+-   0차원 ndarray shape : (), 길이 0
+-   1차원 ndarray shape : (a,), 길이 1
+-   2차원 ndarray shape : (a,b), 길이 2
+-   3차원 ndarray shape : (a,b,c,), 길이 3
+-   n차원 ndarray shape : (a,b,c,d, ... , n) , 길이 n
+
+e.g.)
+1차원 ndarray의 길이가 2라면 shape이 (2,)가 된다.
+2차원 ndarray가 2개의 행과 3개의 행으로 이루어져있다면 shape은 (2,3)이 된다.
+
+```python
+a = np.array(3)
+b = np.array([1,2,3])
+c = np.array([[1,2],[3,4]])
+
+print("a.shape:",a.shape)
+print("b.shape:",b.shape)
+print("c.shape:",c.shape)
+```
+
+    a.shape: ()
+    b.shape: (3,)
+    c.shape: (2, 2)
+
+## 1.2. 특정한 값을 지닌 ndarray 만들기
+
+-   np.zeros(shape) : 해당 shape을 지니면서 모든 원소가 0인 ndarray를 반환한다.
+-   np.ones(shape) : 해당 shape을 지니면서 모든 원소가 1인 ndarray를 반환한다.
+-   np.full(shape,fill_value) : 해당 shape을 지니면서 모든 원소가 fill_value인 ndarray를 반환한다.
+-   np.zeros(shape) : 해당 shape을 지니면서 빈 ndarray를 반환한다. (즉, ndarray가 원소 없이 형태만 가진 것을 뜻한다. 이 때 빈 자리에는 아무런 의미 없는 값이 담긴다.)
+
+```python
+a = np.zeros((2,3))
+b = np.ones((2,3))
+c = np.full((2,3),2.89)
+d = np.empty((3,4))
+
+print("a:\n",a)
+print("b:\n",b)
+print("c:\n",c)
+print("d:\n",d)
+```
+
+    a:
+     [[0. 0. 0.]
+     [0. 0. 0.]]
+    b:
+     [[1. 1. 1.]
+     [1. 1. 1.]]
+    c:
+     [[2.89 2.89 2.89]
+     [2.89 2.89 2.89]]
+    d:
+     [[-2.00000000e+000 -4.34107967e-311  2.96439388e-323  0.00000000e+000]
+     [ 0.00000000e+000  6.82116729e-043  4.75989482e-090  7.24776406e-042]
+     [ 3.61305083e+174  3.35111218e-033  3.99910963e+252  8.34402697e-309]]
+
+-   np.zeros_like(a): a와 동일한 shape을 가진 np.zeros() ndarray를 반환한다.
+-   np.ones_like(a): a와 동일한 shape을 가진 np.ones() ndarray를 반환한다.
+-   np.full_like(a,fill_value): a와 동일한 shape을 지니면서 원소가 모두 fill_value인 ndarray를 반환한다.
+-   np.empty_like(a): a와 동일한 shape을 가진 np.empty() ndarray를 반환한다.
+
+```python
+a = [[1,2,3],[11,12,13]]
+
+b = np.zeros_like(a)
+c = np.ones_like(a)
+d = np.full_like(a,2.89)
+e = np.empty_like(a)
+
+print("b:\n",b)
+print("c:\n",c)
+print("d:\n",d)
+print("e:\n",e)
+```
+
+    b:
+     [[0 0 0]
+     [0 0 0]]
+    c:
+     [[1 1 1]
+     [1 1 1]]
+    d:
+     [[2 2 2]
+     [2 2 2]]
+    e:
+     [[4613690120261567775 4613690120261567775 4613690120261567775]
+     [4613690120261567775 4613690120261567775 4613690120261567775]]
+
+## 1.3. 특정 구간을 가진 ndarray 만들기
+
+-   np.arange(): python의 range()와 동일한 형태의 ndarray를 반환한다.
+-   np.linspace(start,stop,num): start와 stop를 포함해서 갯수가 num인 ndarray를 반환한다. 이 때 숫자간 차이는 동일하다.(즉, (stop-start)/(num-1)이 간격이다.)
+
+```python
+print(np.arange(10))
+print(np.arange(1,10))
+```
+
+    [0 1 2 3 4 5 6 7 8 9]
+    [1 2 3 4 5 6 7 8 9]
+
+```python
+print(np.linspace(0,10,5))
+print(np.linspace(1,9,3))
+```
+
+    [ 0.   2.5  5.   7.5 10. ]
+    [1. 5. 9.]
+
+```python
+# a의 첫번째 열 : np.linspace(1,7,5)
+# a의 첫번째 열 : np.linspace(2,8,5)
+# a의 첫번째 열 : np.linspace(3,9,5)
+# 이와 같은 식으로 응용할 수 있다.
+
+a = np.linspace([1,2,3],[7,8,9],5)
+print("a:\n",a)
+```
+
+    a:
+     [[1.  2.  3. ]
+     [2.5 3.5 4.5]
+     [4.  5.  6. ]
+     [5.5 6.5 7.5]
+     [7.  8.  9. ]]
+
+## 1.4. random 값을 지닌 ndarray 만들기
+
+-   np.random.randn(d0,d1,...,dn): (d0,d1,...,dn) shape을 지니면서 standard normal distribution을 따르는 원소를 가진 ndarray를 반환한다.
+-   np.random.normal(loc,scale,size): shape이 size이면서 N(loc,scale^2) - normal distribution을 따르는 원소를 가진 ndarray를 반환한다.
+-   np.random.rand(d0,d1,...dn): (d0,d1,...,dn) shape을 지닌 0과 1사이의 난수 ndarray를 반환한다.
+-   np.random.uniform(low,high,size) : shape이 size이면서 [low, high)인 uniform distribution을 따르는 원소를 가진 ndarray를 반환한다.
+-   np.random.randint(low,high,size): shape이 size이면서 [low, high) 사이의 정수 난수를 원소를 가진 ndarray를 반환한다.
+
+```python
+random_value = np.random.randn(2,3)
+print("random_value:\n",random_value)
+print("shape:",random_value.shape,'\n')
+
+normal_np = np.random.normal(2,3,(2,3))
+print("normal_np:\n",normal_np,'\n')
+
+
+# 첫번째 열 : np.random.normal(1,2,(5,))
+# 두번째 열 : np.random.normal(2,3,(5,))
+# 세번째 열 : np.random.normal(3,4,(5,))
+# 이와 같은 식으로 응용할 수 있다.
+normal_np = np.random.normal([1,2,3],[2,3,4],(5,3))
+print("normal_np:\n",normal_np)
+```
+
+    random_value:
+     [[ 0.55165579  0.17489209  0.89612111]
+     [-0.79765198  1.37896578 -0.21204699]]
+    shape: (2, 3)
+
+    normal_np:
+     [[ 3.11727935 -0.34660729 -3.33892664]
+     [ 1.80392307  3.44479997  3.27225456]]
+
+    normal_np:
+     [[ 0.66115261  1.75664677 -0.99031452]
+     [ 2.88768003  1.32299346  3.40809972]
+     [-0.16024267  3.39617363 12.64251311]
+     [ 2.74725821 -3.30345528 -4.17343465]
+     [ 0.66780106  2.67214394 14.02177063]]
+
+```python
+rand_np = np.random.rand(3,4)
+print("rand_np:\n",rand_np)
+print("rand_np.shape:",rand_np.shape,'\n')
+
+uni_np = np.random.uniform(1,10,(4,5))
+print("uni_np:\n",uni_np,'\n')
+
+randint_np = np.random.randint(1,5,(2,3))
+print("randint_np:\n",randint_np)
+```
+
+    rand_np:
+     [[0.92237086 0.10226899 0.68722793 0.07666568]
+     [0.34076098 0.5011707  0.37861489 0.915571  ]
+     [0.54037928 0.67335574 0.7048206  0.35539302]]
+    rand_np.shape: (3, 4)
+
+    uni_np:
+     [[1.01827901 1.97141779 7.08257181 8.96082668 3.88664561]
+     [5.37003373 4.69628757 9.30805507 8.70199084 7.40483342]
+     [4.35839514 4.53542873 4.4706763  4.67097125 6.54466408]
+     [7.52547548 6.32478172 7.32259887 1.54413473 1.74974933]]
+
+    randint_np:
+     [[2 2 4]
+     [2 1 2]]
+
+```python
+uni_np = np.random.uniform([1,2],[3,4],(4,2))
+print("uni_np:\n",uni_np,'\n')
+
+randint_np = np.random.randint([1,2,3],[4,5,6],(5,3))
+print("randint_np:\n",randint_np)
+```
+
+    uni_np:
+     [[2.32969404 2.8951195 ]
+     [1.70712646 2.91813374]
+     [1.72107973 3.85343056]
+     [2.27889213 3.85849369]]
+
+    randint_np:
+     [[1 4 5]
+     [3 4 5]
+     [2 3 3]
+     [2 2 4]
+     [1 3 3]]

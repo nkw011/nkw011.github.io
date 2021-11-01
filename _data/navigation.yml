@@ -21,3 +21,5 @@ sidebarTotal:
       children:
           - title: python
             url: /categories/python/
+          - title: numpy
+            url: /categories/numpy/
