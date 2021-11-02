@@ -1,0 +1,394 @@
+---
+title: "[Numpy] 05. 합곱차, 통계값, rounding, 정렬, 최댓값, 최솟값"
+excerpt: "Python Numpy Library - 05. 합곱차, 통계값, rounding, 정렬, 최댓값, 최솟값"
+toc: true
+toc_sticky: true
+categories:
+    - numpy
+tags:
+    - python
+    - numpy
+sidebar:
+    nav: sidebarTotal
+---
+
+```python
+import numpy as np
+```
+
+## 5.1. axis, keepdims
+
+axis와 keepdims는 앞으로 다룰 메소드에서 자주 쓰이는 parameter이다.
+
+### axis
+
+axis는 특정 축으로 계산을 할 때 필요한 parameter이다.
+
+ndarray의 합계를 구하는 sum() 메소드를 이용하여 2차원 ndarray의 row별 합, column별 합을 구해보자.
+
+-   np.sum(ndarray), ndarray.sum(): ndarray 전체 원소의 합을 반환한다.
+
+```python
+a = np.arange(3*4).reshape((3,4))
+print("a:\n",a)
+
+print("np.sum(a):",np.sum(a))
+print("a.sum():",a.sum())
+```
+
+    a:
+     [[ 0  1  2  3]
+     [ 4  5  6  7]
+     [ 8  9 10 11]]
+    np.sum(a): 66
+    a.sum(): 66
+
+이 때 axis = 0을 paramter에 추가해보자.
+
+```python
+a = np.arange(3*4).reshape((3,4))
+print("a:\n",a,'\n')
+
+print("np.sum(a,axis=0):",np.sum(a,axis=0),'\n')
+print("a.sum(axis=0):",a.sum(axis=0))
+```
+
+    a:
+     [[ 0  1  2  3]
+     [ 4  5  6  7]
+     [ 8  9 10 11]]
+
+    np.sum(a,axis=0): [12 15 18 21]
+
+    a.sum(axis=0): [12 15 18 21]
+
+각 자리는 '첫번째 row + 두번째 row + 세번째 row'로 이루어진 것을 알 수 있다.
+
+axis는 shape에서 특정한 축을 기준으로 연산을 수행할 때 쓰인다.
+
+위의 예시인 a를 가지고 설명을 해보자면 a는 (3,4) shape을 지니고 있다.
+
+axis = 0은 여기서 (3,4)의 첫번째 자리인 3을 축으로 해서 연산을 진행하라는 뜻이다.
+
+따라서 3을 축으로 연산이 진행되기 때문에 반환되는 ndarray의 shape에서 3은 사라지고 4만 남는다. shape이 (4,)이 된다.
+
+결국 row를 합치는 과정이되어 첫번째 column의 합, 두번째 column의 합, 세번째 column의 합, 네번째 column의 합이 된다.
+
+```python
+a = np.arange(3*4).reshape((3,4))
+print("a:\n",a,'\n')
+
+b = a.sum(axis=1)
+print("b:",b,"shape:",b.shape)
+```
+
+    a:
+     [[ 0  1  2  3]
+     [ 4  5  6  7]
+     [ 8  9 10 11]]
+
+    b: [ 6 22 38] shape: (3,)
+
+axis = 1은 (3,4)의 두번째 자리인 4를 축으로 해서 연산을 진행하라는 뜻이다.
+
+따라서 4를 축으로 연산이 진행되기 때문에 반환되는 ndarray의 shape에서 4은 사라지고 3만 남는다. shape이 (3,)이 된다.
+
+결국 column을 합치는 과정이 되어 계산 결과는 첫번째 row합, 두번째 row합, 세번째 row합이 된다.
+
+### keepdims
+
+keepdims parameter는 연산을 진행한 후에도 기존 ndarray의 ndims를 그대로 유지할 필요가 있을 때 쓰인다.
+
+keepdims=True로 하면 ndims가 유지되고 하지 않으면 기존 연산 결과가 그대로 진행된다.
+
+```python
+a = np.arange(3*4).reshape((3,-1))
+print("a:\n",a)
+
+b = np.sum(a,axis=1, keepdims=True)
+print("b:\n",b)
+print("b.shape:",b.shape)
+```
+
+    a:
+     [[ 0  1  2  3]
+     [ 4  5  6  7]
+     [ 8  9 10 11]]
+    b:
+     [[ 6]
+     [22]
+     [38]]
+    b.shape: (3, 1)
+
+## 5.2. cumsum, prod, cumprod, diff
+
+-   np.cumsum(a), a.cumsum() : 누적합이 담긴 ndarray를 반환함.
+-   np.prod(a), a.prod(): 곱을 반환한다.
+-   np.cumprod(a), a.cumprod(): 누적곱이 담긴 ndarray를 반환함.
+-   np.diff(a): 각 원소간 차이를 담은 ndarray를 반환한다.
+
+```python
+a = np.arange(5)
+b = np.cumsum(a)
+print("a:",a)
+print("b:",b)
+
+a = np.arange(2*3).reshape((2,3))
+b = np.cumsum(a,axis=0)
+print("a:\n",a)
+print("b:",b)
+```
+
+    a: [0 1 2 3 4]
+    b: [ 0  1  3  6 10]
+    a:
+     [[0 1 2]
+     [3 4 5]]
+    b: [[0 1 2]
+     [3 5 7]]
+
+```python
+a = a = np.arange(1,6)
+b = np.prod(a)
+print("a:",a)
+print("b:",b)
+
+a = np.arange(2*3).reshape((2,3))
+b = np.prod(a,axis=0)
+print("a:\n",a)
+print("b:",b)
+```
+
+    a: [1 2 3 4 5]
+    b: 120
+    a:
+     [[0 1 2]
+     [3 4 5]]
+    b: [ 0  4 10]
+
+```python
+a = a = np.arange(1,6)
+b = np.cumprod(a)
+print("a:",a)
+print("b:",b)
+
+a = np.arange(2*3).reshape((2,3))
+b = np.cumprod(a,axis=0)
+print("a:\n",a)
+print("b:",b)
+```
+
+    a: [1 2 3 4 5]
+    b: [  1   2   6  24 120]
+    a:
+     [[0 1 2]
+     [3 4 5]]
+    b: [[ 0  1  2]
+     [ 0  4 10]]
+
+```python
+a = np.arange(1,6)
+print("a:",a)
+print("np.diff(a):",np.diff(a))
+
+a = np.arange(2*3).reshape((2,3))
+b = np.diff(a)
+print("a:\n",a)
+print("b:\n",b)
+```
+
+    a: [1 2 3 4 5]
+    np.diff(a): [1 1 1 1]
+    a:
+     [[0 1 2]
+     [3 4 5]]
+    b:
+     [[1 1]
+     [1 1]]
+
+## 5.3. mean, median, variance, standard deviation
+
+-   np.mean(a), a.mean(): mean을 반환
+-   np.median(a): median 반환
+-   np.var(a), a.var(): variance 반환
+-   np.std(a), a.std(): standard deviation 반환
+
+```python
+a = np.arange(1,6)
+print("a:",a)
+print("mean:",a.mean())
+
+b = np.arange(6)
+print("b:",b)
+print("b.median:",np.median(b)) # 짝수인경우 '두 원소의 합 / 2'를 이용해 구한다.
+```
+
+    a: [1 2 3 4 5]
+    mean: 3.0
+    b: [0 1 2 3 4 5]
+    b.median: 2.5
+
+```python
+a = np.random.normal(2,3,(4,5))
+print("a:\n",a)
+print("mean:",a.mean())
+print("std:",a.std())
+print("var:",a.var())
+```
+
+    a:
+     [[ 1.2622905   5.37857763  0.51693067  0.72680456 -0.02923806]
+     [ 2.08489916  2.49012965  3.34533077 -1.22778023  3.683315  ]
+     [-0.16356737  0.50816947 -0.23621659 -4.54348532 -0.85318809]
+     [ 5.31556465  3.92603412  3.80061119 -0.08697505  4.97344664]]
+    mean: 1.5435826653280984
+    std: 2.500472108605878
+    var: 6.252360765915925
+
+## 5.4 max, argmax, min, argmin, maximum, minimum
+
+-   np.amax(a), a.max(): a의 최댓값 반환
+-   np.argmax(a), a.argmax(): a의 최댓값의 index를 반환한다.
+-   np.amin(a), a.min(): a의 최솟값 반환
+-   np.argmin(a), a.argmin(): a의 최솟값의 index를 반환한다.
+-   np.maximum(a,b): a와 b중 최댓값으로 구성된 ndarray를 반환한다.
+-   np.minimum(a,b): a와 b중 최솟값으로 구성된 ndarray를 반환한다.
+
+```python
+a = np.random.randint(1,101,(100,))
+print("a:",a)
+print("max value:",np.amax(a),a.max())
+print("max value index:",np.argmax(a), a.argmax())
+print("min value:",np.amin(a),a.min())
+print("min value index:",np.argmin(a), a.argmin())
+```
+
+    a: [  6  38  99  59  56  43  94  12  23  35  98  92  45  18  87  73  51  47
+      75  17  74  67  65  37  90  57  28  87  77  82  14  95  24  58  57  90
+       3  96  75  25   2  51  44  28  61  13  57  95  30  99  72  84  60  20
+      68  63  30  68 100  12  93  29  16   8 100  76  58  70  50  40  32  95
+       8  16  50  58  93  54  83  54  67  65  73  88  42  82  68  10  34  59
+      54  98  87  72  65  42  18  70  76  42]
+    max value: 100 100
+    max value index: 58 58
+    min value: 2 2
+    min value index: 40 40
+
+```python
+a = np.random.randint(1,11,(8,))
+b = np.random.randint(1,11,(8,))
+
+print("a:",a)
+print("b:",b)
+print("maximum:",np.maximum(a,b))
+print("minimum:",np.minimum(a,b))
+
+maximum_like = np.where(a>=b,a,b)
+minimum_like = np.where(a<=b,a,b)
+
+print("maximum_like:",maximum_like)
+print("minimum_like:",minimum_like)
+```
+
+    a: [ 4  3 10  7  7 10  1  5]
+    b: [ 9  3  5  2 10 10  1  5]
+    maximum: [ 9  3 10  7 10 10  1  5]
+    minimum: [ 4  3  5  2  7 10  1  5]
+    maximum_like: [ 9  3 10  7 10 10  1  5]
+    minimum_like: [ 4  3  5  2  7 10  1  5]
+
+## 5.5. rounding, sorting
+
+### rounding
+
+-   np.around(a,decimals): a를 반올림해서 decimals 자리까지 표현
+-   np.round\_(a,decimals): a를 반올림해서 decimals 자리까지 표현
+-   a.round(a,decimals): a를 반올림해서 decimals 자리까지 표현
+
+-   np.ceil(a): a를 ceiling한 ndarray 반환(각 원소에 대해 원소보다 큰 정수 중 가장 작은 정수 반환, -3.1 -> -3)
+-   np.floor(a): a에 floor한 ndarray 반환 (각 원소에 대해 원소보다 작은 정수 중 가장 큰 정수 반환, -3.1 -> -4)
+-   np.trunc(a): a를 truncation한 ndarray 반환(각 원소에 대해 소수자리를 없앤 정수만 반환 -3.1 -> -3)
+
+```python
+a = np.random.uniform(-1,5,(6,))
+b = np.around(a,decimals=2)
+c = np.round_(a,decimals=2)
+d = a.round(decimals=2)
+print("a:",a)
+print("b:",b)
+print("c:",c)
+print("d:",d)
+```
+
+    a: [-0.89677909  3.81304226  4.49314479 -0.13172704 -0.27032964 -0.84539473]
+    b: [-0.9   3.81  4.49 -0.13 -0.27 -0.85]
+    c: [-0.9   3.81  4.49 -0.13 -0.27 -0.85]
+    d: [-0.9   3.81  4.49 -0.13 -0.27 -0.85]
+
+```python
+a = np.random.uniform(-3,5,(6,))
+b = np.ceil(a)
+c = np.floor(a)
+d = np.trunc(a)
+
+print("a:",np.round_(a,decimals=3))
+print("ceil:",b)
+print("floor:",c)
+print("trunc:",d)
+```
+
+    a: [ 3.392  2.609 -0.175  3.54   1.103  3.34 ]
+    ceil: [ 4.  3. -0.  4.  2.  4.]
+    floor: [ 3.  2. -1.  3.  1.  3.]
+    trunc: [ 3.  2. -0.  3.  1.  3.]
+
+### sorting
+
+-   np.sort(a): a를 오름차순 정렬한 ndarray를 반환함.
+-   np.argsort(a): a를 오름차순 정렬한 원소들의 index를 가진 ndarray를 반환함.
+
+```python
+a = np.random.randint(1,7,(3,2))
+print("a:\n",a)
+print("sort:\n",np.sort(a))
+print("argsort:\n",np.argsort(a))
+```
+
+    a:
+     [[2 2]
+     [5 4]
+     [6 3]]
+    sort:
+     [[2 2]
+     [4 5]
+     [3 6]]
+    argsort:
+     [[0 1]
+     [1 0]
+     [1 0]]
+
+```python
+a = np.random.randint(1,11,(3,3))
+print("a:\n",a)
+
+# 각 행마다 내림차순 정렬
+b = np.sort(a,axis=1)
+print("b:\n",b)
+
+# 각 열마다 내림차순 정렬
+c = np.sort(a,axis=0)
+print("c:\n",c)
+```
+
+    a:
+     [[8 6 7]
+     [4 2 3]
+     [2 9 9]]
+    b:
+     [[6 7 8]
+     [2 3 4]
+     [2 9 9]]
+    c:
+     [[2 2 3]
+     [4 6 7]
+     [8 9 9]]
