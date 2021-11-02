@@ -41,9 +41,19 @@ print("a.nbytes:",a.nbytes)
 
 ## 2.2. reshape ndarray, resize ndarray
 
--   np.reshape(ndarray,newshape), ndarray.reshape(newshape): ndarray의 shape을 newshape으로 변경한 새로운 ndarray를 반환한다.
+-   np.reshape(ndarray,newshape), ndarray.reshape(newshape): ndarray의 shape을 newshape으로 변경한 새로운 ndarray를 반환한다. (단, newshape의 총 원소의 수는 기존 ndarray의 총 원소의 수와 동일해야한다.)
 
-단, newshape의 총 원소의 수는 기존 ndarray의 총 원소의 수와 동일해야한다.
+### -1 shape?
+
+shape을 표현할 때 -1이 포함되어 있는 경우가 있다. -1은 더이상 계산하지 않아도 확실하게 shape을 알 수 있을 때 쓴다.
+
+size가 12인 ndarray가 존재한다고 가정해보자. shape을 (2,6), (3,4), (4,3), (1,12) 등으로 다양하게 구성할 수 있을 것이다.
+이 때 (2,-1)이라고 shape을 표현해보자. size가 12이고 shape중 첫번째 자리가 2로 결정되어있기 때문에 나머지 2번째 자리는 6인것을 쉽게 알 수 있다.
+(-1,2)이라고 shape을 표현해보자. size가 12이고 두번째 자리가 2로 결정되어있기 때문에 첫번째 자리가 6인것을 쉽게 알 수가 있다.
+
+이렇듯 -1은 더이상 계산하지 않아도 나머지 shape 자리를 알 수 있을 때 쓴다. 그 자리를 -1로 대체해서 쓴다고 보면 된다.
+
+-1은 특정 shape 부분을 강조하거나 size가 클 때 자주 쓰인다.
 
 ```python
 a = np.array([[1,2,3],[4,5,6]])
