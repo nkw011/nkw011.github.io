@@ -95,7 +95,7 @@ for ax in axes:
 
 <img src="/assets/image/matplotlib-pyplot-01_files/matplotlib-pyplot-01_8_1.png">
 
-## 3.3. plt.subplot2grid()
+### 3.3. plt.subplot2grid()
 
 figure를 먼저 만든 후 사용할 수 있다.
 
