@@ -23,3 +23,5 @@ sidebarTotal:
             url: /categories/python/
           - title: numpy
             url: /categories/numpy/
+          - title: matplotlib
+            url: /categories/matplotlib
