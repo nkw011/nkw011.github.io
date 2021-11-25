@@ -280,7 +280,7 @@ for loc, spine in ax.spines.items():
 
 grid형태의 line을 그려주는 method이다.
 
-**[Axes.grid(which='major',axis='both',**kwargs)](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.grid.html)\*\*
+**[Axes.grid(which='major',axis='both',\*\*kwargs)](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.grid.html)**
 
 -   which: {'major', 'minor', 'both'}
 -   axis: {'both', 'x', 'y'}
