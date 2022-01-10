@@ -13,15 +13,15 @@ html {
     font-size: 15px;
 
     @include breakpoint($medium) {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     @include breakpoint($large) {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     @include breakpoint($x-large) {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     -webkit-text-size-adjust: 100%;
