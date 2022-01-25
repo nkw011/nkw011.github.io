@@ -19,3 +19,7 @@ sidebarTotal:
             url: /categories/matplotlib
           - title: pandas
             url: /categories/pandas
+    - title: ML / DL
+      children:
+          - title: PyTorch
+            url: /categories/pytorch/
