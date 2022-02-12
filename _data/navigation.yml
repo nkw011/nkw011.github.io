@@ -23,3 +23,5 @@ sidebarTotal:
       children:
           - title: pytorch
             url: /categories/pytorch/
+          - title: deeplearning
+            url: /categories/deeplearning/
