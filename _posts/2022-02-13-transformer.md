@@ -58,7 +58,7 @@ transformer에서는 attention 매커니즘으로 dot product를 활용한 atten
 
 input을 embedding layer에 통과시키고 나온 embedding vector 각각에 대해 query, key, value 벡터를 생성한다.
 
--   embedding vector: $d_model$(=512) 차원의 벡터
+-   embedding vector: $d_{model}$(=512) 차원의 벡터
 -   query vector: $d_k$(=64) 차원의 벡터, embedding vector에 $W^q$ 활용해서 생성
 -   key vector: $d_k$(=64) 차원의 벡터, embedding vector에 $W^k$ 활용해서 생성
 -   value vector: $d_v$(=64) 차원의 벡터, embedding vector에 $W^v$ 활용해서 생성
