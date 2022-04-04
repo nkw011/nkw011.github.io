@@ -19,6 +19,10 @@ sidebarTotal:
             url: /categories/matplotlib
           - title: pandas
             url: /categories/pandas
+    - title: Algorithm
+      children:
+          - title: baekjoon
+            url: /categories/baekjoon/
     - title: ML / DL
       children:
           - title: pytorch
