@@ -27,7 +27,7 @@ sidebarTotal:
             url: /categories/programmers/
     - title: ML / DL
       children:
+          - title: nlp
+            url: /categories/nlp/
           - title: pytorch
             url: /categories/pytorch/
-          - title: deeplearning
-            url: /categories/deeplearning/
