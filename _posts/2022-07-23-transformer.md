@@ -215,3 +215,7 @@ Embedding과 Postional Encoding 작업을 해준뒤 N개의 Decoder Block을 쌓
 - linear transformation: Decoder Block 출력값의 차원을 vocab size로 변경하는 역할을 한다.
 
 <img src='/assets/image/transformer/tf11.png'>
+
+## 6. 실습
+
+* [실습 GitHub 저장소](https://github.com/nkw011/nlp_tutorial)
