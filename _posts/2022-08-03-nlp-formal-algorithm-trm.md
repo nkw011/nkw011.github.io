@@ -38,7 +38,7 @@ Encoder-only Transfomer, Decoder-only Transformer에 대한 algorithm과 함께 
 
 논문에서 쓰이는 notation에 대해 소개합니다. Appendix B에 Notation 목록이 포함되어있습니다.
 
-- $[N] \coloneqq \{1,2,\dots, N-1, N\}$, $1\sim N$까지 정수를 포함한 집합
+- $[N] := \{1,2,\dots, N-1, N\}$, $1\sim N$까지 정수를 포함한 집합
 - $N_V$: vocabulary size
 - $V \cong [N_V]$: vocabulary
 - $V^* = \bigcup_{l=0}^{\infty}V^l$: vocabuary로 만들 수 있는 모든 sequence를 가지는 집합
@@ -54,7 +54,7 @@ Encoder-only Transfomer, Decoder-only Transformer에 대한 algorithm과 함께 
     - $z[t]$: $z$의 $t$번째 token
     - Python과 달리 index의 시작이 1 입니다.
     - source라는 표현을 사용하기도 하지만 여기서는 context로 표기합니다.
-- $M \in \R^{d \times d^\prime}$: matrix
+- $M \in \mathbb{R}^{d \times d^\prime}$: matrix
     - $M[i,j]$ : entry $M_{ij}$
     - $M[i,:]$ : $M$의 $i$번째 row vector
     - $M[:,j]$ : $M$의 j번째 column vector
@@ -72,9 +72,9 @@ Encoder-only Transfomer, Decoder-only Transformer에 대한 algorithm과 함께 
 - Tokenization을 통해 만든 vocabulary에 3가지 special token을 추가하여 final vocabulary를 만듭니다.
 - special token을 제외한 나머지 token들에 대해서 $\{1,2,\dots, N_V-3\}$의 unique index를 할당합니다.
 - special token은 다음과 같습니다.
-    - $\text{mask\_token} \coloneqq N_V-2$, masked language modelling에 쓰이는 token
-    - $\text{bos\_token} \coloneqq N_V-1$, the beginning of sequence, sequence의 시작을 알리는 token
-    - $\text{eos\_token} \coloneqq N_V$, the end of sequence, sequence의 마지막을 알리는 token
+    - $\text{mask\_token} := N_V-2$, masked language modelling에 쓰이는 token
+    - $\text{bos\_token} := N_V-1$, the beginning of sequence, sequence의 시작을 알리는 token
+    - $\text{eos\_token} := N_V$, the end of sequence, sequence의 마지막을 알리는 token
 
 ## Algorithm 1: Token embedding
 
@@ -86,11 +86,11 @@ Encoder-only Transfomer, Decoder-only Transformer에 대한 algorithm과 함께 
 
 ### Output
 
-- $e \in \R^{d_e}$: 입력으로 들어온 token ID에 대한 embedding vector 반환.
+- $e \in \mathbb{R}^{d_e}$: 입력으로 들어온 token ID에 대한 embedding vector 반환.
 
 ### Parameters
 
-- $W_e \in \R^{d_e\times N_V}$: embedding matrix
+- $W_e \in \mathbb{R}^{d_e\times N_V}$: embedding matrix
     - vocabulary에 존재하는 모든 token에 대해 embedding 값을 반환하기 위해서 column size가 $N_V$가 됩니다.
 
 ### 과정
@@ -109,11 +109,11 @@ Attention is All You Need에서는 고정된 Positional Encoding 사용하지만
 
 ### Output
 
-- $e \in \R^{d_e}$: 입력으로 들어온 postion에 대한 embedding vector 반환.
+- $e \in \mathbb{R}^{d_e}$: 입력으로 들어온 postion에 대한 embedding vector 반환.
 
 ### Parameters
 
-- $W_e \in \R^{d_e\times l_{max}}$: positional embedding matrix
+- $W_e \in \mathbb{R}^{d_e\times l_{max}}$: positional embedding matrix
     - data에 존재하는 모든 sequence에 대해 positional embedding 값을 반환하야하기 때문에 column size가 $l_{max}$가 됩니다.
 
 ### 과정
@@ -132,24 +132,24 @@ Attention is all You Need 논문에 소개된 single query attention 과정인 $
 
 ### Input
 
-- $e\in\R^{d_{in}}$: 현재 token에 대한 vector representation
+- $e\in\mathbb{R}^{d_{in}}$: 현재 token에 대한 vector representation
 - context sequence에 존재하는 모든 token에 대한 vector representation
-    - $e_t\in\R^{d_{in}}$: context sequence의 $t$번째 token에 대한 vector representation
+    - $e_t\in\mathbb{R}^{d_{in}}$: context sequence의 $t$번째 token에 대한 vector representation
 
 ### Output
 
 - 현재 token과 context 정보를 결합한 vector representation 반환
-    - $\tilde{v} \in \R^{d_{out}}$
+    - $\tilde{v} \in \mathbb{R}^{d_{out}}$
 - 실제 Transformer에서는 attention 이후 residual connection을 하기 때문에 이 점에 유의해서 $d_{out}$과 $d_{in}$를 설정해주어야합니다.
 
 ### Parameters
 
-- $W_e \in \R^{d_{attn}\times d_{in}}$: query linear projection
-    - $b_e \in \R^{d_{attn}}$: bias term
-- $W_k \in \R^{d_{attn}\times d_{in}}$: key linear projection
-    - $b_k \in \R^{d_{attn}}$: bias term
-- $W_v \in \R^{d_{out}\times d_{in}}$: value linear projection
-    - $b_v \in \R^{d_{out}}$: bias term
+- $W_e \in \mathbb{R}^{d_{attn}\times d_{in}}$: query linear projection
+    - $b_e \in \mathbb{R}^{d_{attn}}$: bias term
+- $W_k \in \mathbb{R}^{d_{attn}\times d_{in}}$: key linear projection
+    - $b_k \in \mathbb{R}^{d_{attn}}$: bias term
+- $W_v \in \mathbb{R}^{d_{out}\times d_{in}}$: value linear projection
+    - $b_v \in \mathbb{R}^{d_{out}}$: bias term
 
 ### 과정
 
@@ -169,23 +169,23 @@ Attention is All You Need에 소개된 $A(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k
 
 ### Input
 
-- $X\in\R^{d_X \times l_X}$: primary sequence
-- $Z\in\R^{d_Z \times l_Z}$: primary sequence에 대한 context sequence
+- $X\in\mathbb{R}^{d_X \times l_X}$: primary sequence
+- $Z\in\mathbb{R}^{d_Z \times l_Z}$: primary sequence에 대한 context sequence
 
 ### Output
 
-- $\tilde{V}\in\R^{d_{out} \times l_X}$: context 정보와 결합한 $X$에 존재하는 모든 token에 대한 vector represenations 반환
-    - $\tilde{v} \in \R^{d_{out}}$
+- $\tilde{V}\in\mathbb{R}^{d_{out} \times l_X}$: context 정보와 결합한 $X$에 존재하는 모든 token에 대한 vector represenations 반환
+    - $\tilde{v} \in \mathbb{R}^{d_{out}}$
 - 실제 Transformer에서는 attention 이후 residual connection을 하기 때문에 이 점에 유의해서 $d_{out}$과 $d_{in}$를 설정해주어야합니다.
 
 ### Parameters
 
-- $W_e \in \R^{d_{attn}\times d_{X}}$: query linear projection
-    - $b_e \in \R^{d_{attn}}$: bias term
-- $W_k \in \R^{d_{attn}\times d_{Z}}$: key linear projection
-    - $b_k \in \R^{d_{attn}}$: bias term
-- $W_v \in \R^{d_{out}\times d_{Z}}$: value linear projection
-    - $b_v \in \R^{d_{out}}$: bias term
+- $W_e \in \mathbb{R}^{d_{attn}\times d_{X}}$: query linear projection
+    - $b_e \in \mathbb{R}^{d_{attn}}$: bias term
+- $W_k \in \mathbb{R}^{d_{attn}\times d_{Z}}$: key linear projection
+    - $b_k \in \mathbb{R}^{d_{attn}}$: bias term
+- $W_v \in \mathbb{R}^{d_{out}\times d_{Z}}$: value linear projection
+    - $b_v \in \mathbb{R}^{d_{out}}$: bias term
 
 ### Hyperparameters
 
@@ -210,7 +210,7 @@ bidirectional / unmasked self-attention의 경우 sequence에 존재하는 모�
 
 Unidirectional / masked self-attention의 경우 이전 token들을 context로 사용하여 각 token에 대해 attention을 계산합니다.
 
-현재 token 다음에 나오는 token들은 maksed out되기 때문에 $\text{Mask} \coloneqq [[t_z \le t_x]]$이면서 $Z = X$인 Attention 입니다.
+현재 token 다음에 나오는 token들은 maksed out되기 때문에 $\text{Mask} := [[t_z \le t_x]]$이면서 $Z = X$인 Attention 입니다.
 
 ### Cross-attention
 
@@ -222,27 +222,27 @@ primary sequence와 context sequence가 다른 attention입니다. self-attentio
 
 ### Input
 
-- $X\in\R^{d_X \times l_X}$: primary sequence
-- $Z\in\R^{d_Z \times l_Z}$: primary sequence에 대한 context sequence
+- $X\in\mathbb{R}^{d_X \times l_X}$: primary sequence
+- $Z\in\mathbb{R}^{d_Z \times l_Z}$: primary sequence에 대한 context sequence
 
 ### Output
 
-- $\tilde{V}\in\R^{d_{out} \times l_X}$: context 정보와 결합하여 $X$에 존재하는 모든 token에 대한 vector represenations 반환
-    - $\tilde{v} \in \R^{d_{out}}$
+- $\tilde{V}\in\mathbb{R}^{d_{out} \times l_X}$: context 정보와 결합하여 $X$에 존재하는 모든 token에 대한 vector represenations 반환
+    - $\tilde{v} \in \mathbb{R}^{d_{out}}$
 - 실제 Transformer에서는 attention 이후 residual connection을 하기 때문에 이 점에 유의해서 $d_{out}$과 $d_{in}$를 설정해주어야합니다.
 
 ### Parameters
 
 - $H$: head 수
 - $h \in [H]$에 대해서,
-    - $W_e^h \in \R^{d_{attn}\times d_{X}}$: query linear projection
-        - $b_e^h \in \R^{d_{attn}}$$b_e \in \R^{d_{attn}}$: bias term
-    - $W_k^h \in \R^{d_{attn}\times d_{Z}}$: key linear projection
-        - $b_k^h \in \R^{d_{attn}}$: bias term
-    - $W_v^h \in \R^{d_{mid} \times d_{Z}}$: value linear projection
-        - $b_v^h \in \R^{d_{mid}}$: bias term
-- $W_o \in \R^{d_{out} \times Hd_{mid}}$
-    - $b_o \in \R^{d_{out}}$
+    - $W_e^h \in \mathbb{R}^{d_{attn}\times d_{X}}$: query linear projection
+        - $b_e^h \in \mathbb{R}^{d_{attn}}$$b_e \in \mathbb{R}^{d_{attn}}$: bias term
+    - $W_k^h \in \mathbb{R}^{d_{attn}\times d_{Z}}$: key linear projection
+        - $b_k^h \in \mathbb{R}^{d_{attn}}$: bias term
+    - $W_v^h \in \mathbb{R}^{d_{mid} \times d_{Z}}$: value linear projection
+        - $b_v^h \in \mathbb{R}^{d_{mid}}$: bias term
+- $W_o \in \mathbb{R}^{d_{out} \times Hd_{mid}}$
+    - $b_o \in \mathbb{R}^{d_{out}}$
 
 ### Hyperparameters
 
@@ -252,7 +252,7 @@ primary sequence와 context sequence가 다른 attention입니다. self-attentio
 
 - 1 ~ 2번: Algorithm 4에 나오는 Attention을 $h$번 적용한다.
 - 3번: h개의 attention output을 모두 concatenation한다.
-- 4번: linear projection을 적용하여 $\R^{d_{out}}$ vector로 변환한다.
+- 4번: linear projection을 적용하여 $\mathbb{R}^{d_{out}}$ vector로 변환한다.
 
 ## Algorithm 6. layer_norm
 
@@ -260,16 +260,16 @@ primary sequence와 context sequence가 다른 attention입니다. self-attentio
 
 ### Input
 
-- $e \in \R^{d_e}$: neural network activations
+- $e \in \mathbb{R}^{d_e}$: neural network activations
     - attention, position-wise feed forward의 output이 layer_norm의 input으로 들어갑니다.
 
 ### Output
 
-- $\hat{e} \in \R^{d_e}$: normalized activations
+- $\hat{e} \in \mathbb{R}^{d_e}$: normalized activations
 
 ### Parameters
 
-- $\gamma, \beta \in \R^{d_e}$: element-wise scale($\gamma$)and offset($\beta$)
+- $\gamma, \beta \in \mathbb{R}^{d_e}$: element-wise scale($\gamma$)and offset($\beta$)
 
 ### 과정
 
@@ -285,7 +285,7 @@ primary sequence와 context sequence가 다른 attention입니다. self-attentio
 
 ### Input
 
-- $e \in \R^{d_e}$: a token encoding
+- $e \in \mathbb{R}^{d_e}$: a token encoding
     - encoding된 token을 의미한다.
 
 ### Output
@@ -295,7 +295,7 @@ primary sequence와 context sequence가 다른 attention입니다. self-attentio
 
 ### Parameters
 
-- $W_u \in \R^{N_V\times d_e}$: the embedding matrix
+- $W_u \in \mathbb{R}^{N_V\times d_e}$: the embedding matrix
 
 ### 과정
 
