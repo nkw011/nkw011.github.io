@@ -1,5 +1,5 @@
 ---
-title: "Formal Algorithms for Transformers Summarization"
+title: "Formal Algorithms for Transformers 요약"
 excerpt: "Formal Algorithms for Transformers 논문 요약 정리"
 use_math: true
 toc: true
