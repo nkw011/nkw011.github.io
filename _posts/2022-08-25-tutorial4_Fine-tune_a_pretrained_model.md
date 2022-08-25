@@ -1,7 +1,6 @@
 ---
 title: "[Huggingface 🤗 Transformers Tutorial] 4. Fine-tune a pretrained model"
 excerpt: "🤗 Transformers를 이용하여 pretrained model을 fine-tuning하는 방법을 배워보고 sentiment analysis(감정 분석) task를 간단하게 수행해봅니다."
-use_math: true
 toc: true
 toc_sticky: true
 categories:
@@ -452,7 +451,7 @@ trainer.train()
       <td>0.041600</td>
     </tr>
   </tbody>
-</table><p>
+</table>
 
     TrainOutput(global_step=630, training_loss=0.26070984389100754, metrics={'train_runtime': 507.216, 'train_samples_per_second': 39.431, 'train_steps_per_second': 1.242, 'total_flos': 1223055296400000.0, 'train_loss': 0.26070984389100754, 'epoch': 10.0})
 
