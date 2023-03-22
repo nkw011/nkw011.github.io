@@ -63,7 +63,7 @@ chain-of-thought prompting은 reasoning task에 있어 몇가지 좋은 특성�
 
 ### 3.2. Results
 
-<img src="/assets/image/chain-of-thought/ct2.png">
+<img src="/assets/image/chain-of-thought/ct2.png" width="358" height="708">
 
 3가지 중요한 점을 확인할 수 있습니다.
 
@@ -81,7 +81,7 @@ PaLM 62B에서는 error를 보이나 PaLM 540B에서는 정상적으로 동작�
 
 ### 3.3. Ablation Study
 
-<img src="/assets/image/chain-of-thought/ct3.png">
+<img src="/assets/image/chain-of-thought/ct3.png" width="358" height="572">
 
 chain-of-thought prompting이 아니라 다른 형태의 prompting이더라도 성능이 chain-of-thought prompting처럼 향상될 수 있는지 확인합니다.
 
@@ -97,7 +97,7 @@ chain-of-thought prompting의 robustness를 확인하기위해 다른 annnotator
 
 특정 annotation style에 관계없이 모두 standard prompting보다 성능이 좋게 나왔습니다. example에 상관없이 standard prompting보다 결과가 좋게 나온 것을 확인할 수 있었습니다.
 
-<img src="/assets/image/chain-of-thought/ct4.png">
+<img src="/assets/image/chain-of-thought/ct4.png" width="358" height="616">
 
 ## 4. Commonsense Reasoning
 
@@ -126,7 +126,7 @@ chain-of-thought prompting의 robustness를 확인하기위해 다른 annnotator
 
 smaller model에서는 성능이 좋지 않지만 100B scale이상에 대해서는 성능 향상 폭이 큰 것을 확인할 수 있습니다. OOD 실험에 대해서도 성능이 좋게 나온 것을 확인할 수 있기 때무네 chain-of-thought prompting이 입력으로 주어지는 text 길이에 상관없이 generalization 성능이 좋은 것을 확인할 수 있습니다.
 
-<img src="/assets/image/chain-of-thought/ct7.png">
+<img src="/assets/image/chain-of-thought/ct7.png" width="358" height="663">
 
 ## 6. Discussion
 
