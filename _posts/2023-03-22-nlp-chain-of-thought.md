@@ -32,7 +32,7 @@ Chain-of-Thought Prompting 방법은 Model이 문제를 해결하기 위해 inte
 
 방법은 다음과 같습니다.
 
-![Untitled](/assets/image/chain-of-thought/ct.png)
+<img src="/assets/image/chain-of-thought/ct.png">
 
 왼쪽이 일반적인 standard prompting이고 오른쪽이 본 논문에서 제시하는 chain-of-thought prompting입니다. 먼저 model input에서 standard prompting에서는 example을 줄 때 question과 answer를 directly하게 제공하는 반면 chain-of-thought는 natural language를 통해 최종적인 답을 구할 수 있도록 제시합니다. Model output을 보면 standard prompting은 틀린 정답을 내어놓지만 chain-of-thought prompting에서는 Model input에서 제시된 것과 같이 문제를 푸는 중간과정을 나열한 뒤 올바른 정답을 구하게 됩니다.
 
@@ -57,13 +57,13 @@ chain-of-thought prompting은 reasoning task에 있어 몇가지 좋은 특성�
 
 **Language models** 5개의 large language model을 사용하였습니다. (1) GPT-3 (2) LaMDA (3) PaLM (4) UL2 20B (5) Codex
 
-![Untitled](/assets/image/chain-of-thought/ct1.png)
+<img src="/assets/image/chain-of-thought/ct1.png">
 
 - math word problem dataset과 Chain-of-thought Prompting 예시
 
 ### 3.2. Results
 
-![Untitled](/assets/image/chain-of-thought/ct2.png)
+<img src="/assets/image/chain-of-thought/ct2.png">
 
 3가지 중요한 점을 확인할 수 있습니다.
 
@@ -81,7 +81,7 @@ PaLM 62B에서는 error를 보이나 PaLM 540B에서는 정상적으로 동작�
 
 ### 3.3. Ablation Study
 
-![Untitled](/assets/image/chain-of-thought/ct3.png)
+<img src="/assets/image/chain-of-thought/ct3.png">
 
 chain-of-thought prompting이 아니라 다른 형태의 prompting이더라도 성능이 chain-of-thought prompting처럼 향상될 수 있는지 확인합니다.
 
@@ -97,7 +97,7 @@ chain-of-thought prompting의 robustness를 확인하기위해 다른 annnotator
 
 특정 annotation style에 관계없이 모두 standard prompting보다 성능이 좋게 나왔습니다. example에 상관없이 standard prompting보다 결과가 좋게 나온 것을 확인할 수 있었습니다.
 
-![Untitled](/assets/image/chain-of-thought/ct4.png)
+<img src="/assets/image/chain-of-thought/ct4.png">
 
 ## 4. Commonsense Reasoning
 
@@ -105,11 +105,11 @@ chain-of-thought prompting의 robustness를 확인하기위해 다른 annnotator
 
 **Prompts** Figure 3에 제시된 방법된 방법을 확인하면 됩니다.
 
-![Untitled](/assets/image/chain-of-thought/ct5.png)
+<img src="/assets/image/chain-of-thought/ct5.png">
 
 **Results.** Figure 7에서 결과를 확인할 수 있습니다. chain-of-thought prompting 방법이 commonsense reasoing을 요구하는 task에 대해서도 효과적으로 성능을 향상시킨 것을 확인할 수 있습니다.
 
-![Untitled](/assets/image/chain-of-thought/ct6.png)
+<img src="/assets/image/chain-of-thought/ct6.png">
 
 ## 5. Symbolic Reasoning
 
@@ -126,7 +126,7 @@ chain-of-thought prompting의 robustness를 확인하기위해 다른 annnotator
 
 smaller model에서는 성능이 좋지 않지만 100B scale이상에 대해서는 성능 향상 폭이 큰 것을 확인할 수 있습니다. OOD 실험에 대해서도 성능이 좋게 나온 것을 확인할 수 있기 때무네 chain-of-thought prompting이 입력으로 주어지는 text 길이에 상관없이 generalization 성능이 좋은 것을 확인할 수 있습니다.
 
-![Untitled](/assets/image/chain-of-thought/ct7.png)
+<img src="/assets/image/chain-of-thought/ct7.png">
 
 ## 6. Discussion
 
